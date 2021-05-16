@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.site-name {
+  font-family: cursive;
+}
+.card {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+li {
+  font-size: large;
+  font-weight: 600;
+}
+
+.addItem {
+  display: block;
+}
+
+.col-50 {
+  display: inline-block;
+  width: 35%;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+input,textarea {
+  display: block;
+  text-align: center;
+  margin: 20px 5px;
+  border-radius: 5px;
+  width : 100%;
+  }
+
+.error {
+  text-align: center;
+  color: #bf1650;
+}
+
+.error::before {
+  display: inline-block;
+  content: "⚠  ";
+}
+@media screen and (max-width: 750px) {
+  .col-50 {
+    width: 100%;
+  }
+}
+.bg_image{
+  background-image: url('https://img.freepik.com/free-photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg?size=626&ext=jpg');
+  background-size: cover;
+  height: 100vh;
+ 
+}
+
+
+.delete-icon  {
+text-align: right !important;
+margin-right : 10px !important;
+
+}
+
+.desc{
+  font-size: x-small;
+}
