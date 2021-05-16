@@ -19,7 +19,8 @@ export default function Home({ id }) {
 
   return (
     <div>
-      <h2 className="navbar-header site-name text-danger text-center pt-2 font-weight-bold">Secret Messanger</h2>
+      <h2 className="navbar-header site-name text-danger text-center pt-2 font-weight-bold">Secret Messenger</h2>
+      <h6 className="navbar-header site-name text-danger text-center pt-4 font-weight-bold">Start sending secret messages Anonymously!</h6>
       {id && <ViewSecretMessage id={id} />}
       {!id && <HomePage />}
 
@@ -72,7 +73,7 @@ export function MessageForm({ setToggle, setToggleSentMessages }) {
       randomKey: uuidv4(),
       password: data.password,
       message: data.message,
-      targetUrl: "http://localhost:3000",
+      targetUrl: "https://secret-messenger.netlify.app",
       targetMail: data.email
     }
 

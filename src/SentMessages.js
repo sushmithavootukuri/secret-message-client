@@ -7,8 +7,8 @@ export default function ViewMessages() {
   return (
 
     <div className="col-md-8">
-      <div className="row col-10 ">
-        {!messages ? <h1>No secret messages sent!!</h1> :
+      <div className="row col-10 text-center text-danger  mx-auto">
+        {!messages || messages.length === 0 ? <h1 >No secret messages sent!!</h1> :
 
           messages.length > 0 && messages.map((messageObj, index) => (
             <ViewMessage messageObj={messageObj} key={index} setMessages={setMessages} />
@@ -21,23 +21,21 @@ export default function ViewMessages() {
 };
 
 const ViewMessage = ({ messageObj, setMessages }) => {
-
-  let deleteMessage = (messageData) => {
-
-
-
-
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [password, setPassword] = useState("");
+  let deleteMessage = async (messageData) => {
     api.delete("/delete-message", { data: messageData })
       .then((res) => {
         alert("Message deleted succesfully!");
 
-        let temp = JSON.parse(localStorage.getItem("messages"));
+
+        let temp = JSON.parse(localStorage.getItem("messages") || "[]");
         temp = temp.filter((msg) => {
           return msg.randomKey !== messageData.secretKey
         })
-        JSON.stringify(temp);
+
         setMessages(temp)
-        localStorage.setItem("messages", temp)
+        localStorage.setItem("messages", JSON.stringify(temp));
       })
       .catch((error) => alert(error));
 
@@ -48,20 +46,30 @@ const ViewMessage = ({ messageObj, setMessages }) => {
       <div className="card h-100">
         <div className="card-body">
           <p className="card-text text-overflow ">{messageObj.message.length > 35 ? messageObj.message.substring(0, 35) + "..." : messageObj.message}  </p>
-
-          <button className="btn btn-danger"
+          {passwordVisibility && <input type="password" name="password" placeholder="Enter Password" onChange={(e) => {
+            setPassword(e.target.value)
+          }}></input>}
+          {!passwordVisibility && <button className="btn btn-danger"
             onClick={() => {
+              setPasswordVisibility(true)
+            }}
+          >Delete</button>}
 
-              let password = prompt("Enter password : ")
+          {passwordVisibility && <button className="btn btn-danger"
+            onClick={() => {
               deleteMessage({
                 password: password,
                 secretKey: messageObj.randomKey
+              }).then(() => {
+                setPasswordVisibility(false)
+                setPassword("")
               })
+
             }}
-          >Delete</button>
+          >Delete</button>}
 
         </div>
-      </div>
+      </div >
     </div >
 
 
